@@ -1,4 +1,4 @@
-package com.brahalla.app;
+package com.brahalla.ftpsmanager;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -44,11 +44,11 @@ public class FtpsManager {
     this.setPassword(password);
   }
 
-  private FTPSClient getFtpsClient() {
+  public FTPSClient getFtpsClient() {
     return this.ftpsClient;
   }
 
-  private void setFtpsClient(FTPSClient ftpsClient) {
+  public void setFtpsClient(FTPSClient ftpsClient) {
     this.ftpsClient = ftpsClient;
   }
 
@@ -112,9 +112,9 @@ public class FtpsManager {
       this.ftpsClient.setKeyManager(keyManager);
       this.ftpsClient.setTrustManager(trustManager);
 
+      // Connect to server
       this.ftpsClient.connect(this.getHostname(), 21);
-      System.out.println("Connected to " + this.getHostname() + ".");
-      this.ftpsClient.pwd();
+
     } catch (Exception e){
       e.printStackTrace();
     }

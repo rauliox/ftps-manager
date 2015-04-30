@@ -1,4 +1,4 @@
-package com.brahalla.app;
+package com.brahalla.ftpsmanager;
 
 public class App
 {
