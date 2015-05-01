@@ -33,13 +33,15 @@ public class FtpsManager {
   private String keyStorePath;
   private String keyStorePassword;
   private String hostname;
+  private Integer port;
   private String username;
   private String password;
 
-  public FtpsManager(String keyStorePath, String keyStorePassword, String hostname, String username, String password) {
+  public FtpsManager(String keyStorePath, String keyStorePassword, String hostname, Integer port, String username, String password) {
     this.setKeyStorePath(keyStorePath);
     this.setKeyStorePassword(keyStorePassword);
     this.setHostname(hostname);
+    this.setPort(port);
     this.setUsername(username);
     this.setPassword(password);
   }
@@ -48,47 +50,55 @@ public class FtpsManager {
     return this.ftpsClient;
   }
 
-  public void setFtpsClient(FTPSClient ftpsClient) {
+  private void setFtpsClient(FTPSClient ftpsClient) {
     this.ftpsClient = ftpsClient;
   }
 
-  public String getKeyStorePath() {
+  private String getKeyStorePath() {
     return this.keyStorePath;
   }
 
-  public void setKeyStorePath(String keyStorePath) {
+  private void setKeyStorePath(String keyStorePath) {
     this.keyStorePath = keyStorePath;
   }
 
-  public String getKeyStorePassword() {
+  private String getKeyStorePassword() {
     return this.keyStorePassword;
   }
 
-  public void setKeyStorePassword(String keyStorePassword) {
+  private void setKeyStorePassword(String keyStorePassword) {
     this.keyStorePassword = keyStorePassword;
   }
 
-  public String getHostname() {
+  private String getHostname() {
     return this.hostname;
   }
 
-  public void setHostname(String hostname) {
+  private void setHostname(String hostname) {
     this.hostname = hostname;
   }
 
-  public String getUsername() {
+  private Integer getPort() {
+    return this.port;
+  }
+
+  private void setPort(Integer port) {
+    this.port = port;
+  }
+
+  private String getUsername() {
     return this.username;
   }
 
-  public void setUsername(String username) {
+  private void setUsername(String username) {
     this.username = username;
   }
 
-  public String getPassword() {
+  private String getPassword() {
     return this.password;
   }
 
-  public void setPassword(String password) {
+  private void setPassword(String password) {
     this.password = password;
   }
 
@@ -113,7 +123,7 @@ public class FtpsManager {
       this.ftpsClient.setTrustManager(trustManager);
 
       // Connect to server
-      this.ftpsClient.connect(this.getHostname(), 21);
+      this.ftpsClient.connect(this.getHostname(), this.getPort());
 
     } catch (Exception e){
       e.printStackTrace();
@@ -122,7 +132,6 @@ public class FtpsManager {
 
   private SSLContext createSslContext(String keyStorePath, String keyStorePassword) throws KeyManagementException, KeyStoreException, NoSuchAlgorithmException, CertificateException, FileNotFoundException, UnrecoverableKeyException, IOException {
     TrustManager[] trustManagers = this.createTrustManagers(keyStorePath, keyStorePassword);
-    System.out.println("Init SSL Context");
     SSLContext sslContext = SSLContext.getInstance("SSLv3");
     sslContext.init(null, trustManagers, null);
 
