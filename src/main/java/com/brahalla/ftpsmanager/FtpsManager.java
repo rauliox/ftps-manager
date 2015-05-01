@@ -37,6 +37,10 @@ public class FtpsManager {
   private String username;
   private String password;
 
+  public FtpsManager() {
+    super();
+  }
+
   public FtpsManager(String keyStorePath, String keyStorePassword, String hostname, Integer port, String username, String password) {
     this.setKeyStorePath(keyStorePath);
     this.setKeyStorePassword(keyStorePassword);
@@ -58,7 +62,7 @@ public class FtpsManager {
     return this.keyStorePath;
   }
 
-  private void setKeyStorePath(String keyStorePath) {
+  public void setKeyStorePath(String keyStorePath) {
     this.keyStorePath = keyStorePath;
   }
 
@@ -66,7 +70,7 @@ public class FtpsManager {
     return this.keyStorePassword;
   }
 
-  private void setKeyStorePassword(String keyStorePassword) {
+  public void setKeyStorePassword(String keyStorePassword) {
     this.keyStorePassword = keyStorePassword;
   }
 
@@ -74,7 +78,7 @@ public class FtpsManager {
     return this.hostname;
   }
 
-  private void setHostname(String hostname) {
+  public void setHostname(String hostname) {
     this.hostname = hostname;
   }
 
@@ -82,7 +86,7 @@ public class FtpsManager {
     return this.port;
   }
 
-  private void setPort(Integer port) {
+  public void setPort(Integer port) {
     this.port = port;
   }
 
@@ -90,7 +94,7 @@ public class FtpsManager {
     return this.username;
   }
 
-  private void setUsername(String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
@@ -98,7 +102,7 @@ public class FtpsManager {
     return this.password;
   }
 
-  private void setPassword(String password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
